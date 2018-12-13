@@ -4,10 +4,8 @@ public class MyLinkedList {
   private int size;
   private Node start, end;
 
-  public MyLinkedList(int first) {
-    start = new Node(first);
+  public MyLinkedList() {
     size = 0;
-    end = start;
   }
 
   public int size() {
@@ -15,6 +13,12 @@ public class MyLinkedList {
   }
 
   public boolean add(int value) {
+    if (size == 0) {
+      start = new Node(value);
+      end = start;
+      size++;
+      return true;
+    }
     end.setNext(new Node(end));
     end = end.next();
     end.set(value);
@@ -24,17 +28,21 @@ public class MyLinkedList {
 
   public String toString() {
     String ans = "[";
-    Node current = start;
-    while (current.hasNext()) {
-      //System.out.println("node " + current.value() +" is followed by "+current.next().value());
-      ans += current.value() + ", ";
-      current = current.next();
+    try {
+      Node current = start;
+      while (current.hasNext()) {
+        //System.out.println("node " + current.value() +" is followed by "+current.next().value());
+        ans += current.value() + ", ";
+        current = current.next();
+      }
+      return ans + current.value() + "]";
+    } catch (NullPointerException e) {
+      return "[]";
     }
-    return ans + current.value() + "]";
   }
 
   public static void main(String[] args) {
-    MyLinkedList test = new MyLinkedList(1);
+    MyLinkedList test = new MyLinkedList();
 
     System.out.println("test = " + test);
 
