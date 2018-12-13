@@ -27,13 +27,12 @@ public class MyLinkedList {
   }
 
   public Integer get(int index) {
-    Node current = start;
-    while (index > 0) {
-      current = current.next();
-      index--;
-    }
-    return current.value();
+    return getNode(index).value();
   }
+
+  /*public Integer set(int index, Integer value) {
+
+  }*/
 
   public boolean contains(Integer value) {
     Node current = start;
@@ -58,6 +57,15 @@ public class MyLinkedList {
     } catch (NullPointerException e) {
       return "[]";
     }
+  }
+
+  private Node getNode(int index) {
+    Node current = start;
+    while (index > 0) {
+      current = current.next();
+      index--;
+    }
+    return current;
   }
 
   public static void main(String[] args) {
