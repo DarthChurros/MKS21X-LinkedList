@@ -1,35 +1,4 @@
-class Node {
-  private int data;
-  private Node next, prev;
 
-  public Node(Node last) {
-    prev = last;
-  }
-
-  public Node(int val) {
-    data = val;
-  }
-
-  public Node next() {
-    return next;
-  }
-
-  public void setNext(Node newNext) {
-    next = newNext;
-  }
-
-  public boolean hasNext() {
-    return next != null;
-  }
-
-  public int value() {
-    return data;
-  }
-
-  public void set(int value) {
-    data = value;
-  }
-}
 
 public class MyLinkedList {
   private int size;
@@ -75,5 +44,38 @@ public class MyLinkedList {
 
     System.out.println("Adding 2, -5, 4...");
     System.out.println("test = " + test);
+  }
+
+  private class Node {
+    private int data;
+    private Node next, prev;
+
+    public Node(Node last) {
+      prev = last;
+    }
+
+    public Node(int val) {
+      data = val;
+    }
+
+    public Node next() {
+      return next;
+    }
+
+    public void setNext(Node newNext) {
+      next = newNext;
+    }
+
+    public boolean hasNext() {
+      return next != null;
+    }
+
+    public int value() {
+      return data;
+    }
+
+    public void set(int value) {
+      data = value;
+    }
   }
 }
