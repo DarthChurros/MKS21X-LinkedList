@@ -30,9 +30,9 @@ public class MyLinkedList {
     return getNode(index).value();
   }
 
-  /*public Integer set(int index, Integer value) {
-
-  }*/
+  public Integer set(int index, Integer value) {
+    Integer old;
+  }
 
   public boolean contains(Integer value) {
     Node current = start;
