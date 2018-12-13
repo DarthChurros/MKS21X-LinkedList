@@ -26,6 +26,15 @@ public class MyLinkedList {
     return true;
   }
 
+  public Integer get(int index) {
+    Node current = start;
+    while (index > 0) {
+      current = current.next();
+      index--;
+    }
+    return current.value();
+  }
+
   public boolean contains(Integer value) {
     Node current = start;
     while (current.hasNext()) {
@@ -62,6 +71,7 @@ public class MyLinkedList {
 
     System.out.println("Adding 2, -5, 4...");
     System.out.println("test = " + test);
+    System.out.println("The second element is " + test.get(1));
   }
 
   private class Node {
