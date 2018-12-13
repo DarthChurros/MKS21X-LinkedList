@@ -26,6 +26,16 @@ public class MyLinkedList {
     return true;
   }
 
+  public boolean contains(Integer value) {
+    Node current = start;
+    while (current.hasNext()) {
+      if (current.value() == value) {
+        return true;
+      }
+    }
+    return end.value() == value;
+  }
+
   public String toString() {
     String ans = "[";
     try {
