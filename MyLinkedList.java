@@ -38,13 +38,18 @@ public class MyLinkedList {
   }
 
   public boolean contains(Integer value) {
+    return indexOf(value) >= 0;
+  }
+
+  public int indexOf(Integer value) {
     Node current = start;
-    while (current.hasNext()) {
+    for (int i = 0; i < size; i++) {
       if (current.value() == value) {
-        return true;
+        return i;
       }
+      current = current.next();
     }
-    return end.value() == value;
+    return -1;
   }
 
   public String toString() {
