@@ -52,6 +52,30 @@ public class MyLinkedList {
     return -1;
   }
 
+  public void add(int index, Integer value) {
+    if (index < 0 || index > size) {
+      throw new IndexOutOfBoundsException();
+    }
+    Node current;
+    Node newNode = new Node(value);
+    if (index == size) {
+      add(value);
+      end = newNode;
+      if (index == 0) {
+        start = newNode;
+        end = start;
+      }
+    } else {
+      current = getNode(index);
+      if (index != 0) {
+        current.setNext(newNode);
+        newNode.setPrev(current);
+      }
+      
+    }
+    size++;
+  }
+
   public String toString() {
     String ans = "[";
     try {
@@ -88,6 +112,10 @@ public class MyLinkedList {
     System.out.println("Adding 2, -5, 4...");
     System.out.println("test = " + test);
     System.out.println("The second element is " + test.get(1));
+
+    test.add(2, 3);
+    System.out.println("Adding 3 in the third slot...");
+    System.out.println("test = " + test);
   }
 
   private class Node {
@@ -108,6 +136,10 @@ public class MyLinkedList {
 
     public void setNext(Node newNext) {
       next = newNext;
+    }
+
+    public void setPrev(Node newPrev) {
+      prev = newPrev;
     }
 
     public boolean hasNext() {
