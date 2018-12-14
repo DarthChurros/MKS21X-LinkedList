@@ -31,7 +31,10 @@ public class MyLinkedList {
   }
 
   public Integer set(int index, Integer value) {
-    Integer old;
+    Node current = getNode(index);
+    Integer old = current.value();
+    current.set(value);
+    return old;
   }
 
   public boolean contains(Integer value) {
