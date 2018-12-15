@@ -66,14 +66,15 @@ public class MyLinkedList {
         end = start;
       }
     } else {
-      current = getNode(index-1);
-      current.next().setPrev(newNode);
-      newNode.setNext(current.next());
-      if (index != 0) {
-        current.setNext(newNode);
-        newNode.setPrev(current);
+      current = getNode(index);
+      if (index == 0) {
+        start = newNode;
+      } else {
+        current.prev().setNext(newNode);
+        newNode.setPrev(current.prev());
       }
-
+      current.setPrev(newNode);
+      newNode.setNext(current);
     }
     size++;
   }
@@ -118,6 +119,12 @@ public class MyLinkedList {
     test.add(2, 3);
     System.out.println("Adding 3 in the third slot...");
     System.out.println("test = " + test);
+    test.add(4,12);
+    System.out.println("Adding 12 in the last slot...");
+    System.out.println("test = " + test);
+    test.add(0,0);
+    System.out.println("Adding 0 in the first slot...");
+    System.out.println("test = " + test);
   }
 
   private class Node {
@@ -134,6 +141,10 @@ public class MyLinkedList {
 
     public Node next() {
       return next;
+    }
+
+    public Node prev() {
+      return prev;
     }
 
     public void setNext(Node newNext) {
