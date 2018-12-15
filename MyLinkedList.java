@@ -66,12 +66,14 @@ public class MyLinkedList {
         end = start;
       }
     } else {
-      current = getNode(index);
+      current = getNode(index-1);
+      current.next().setPrev(newNode);
+      newNode.setNext(current.next());
       if (index != 0) {
         current.setNext(newNode);
         newNode.setPrev(current);
       }
-      
+
     }
     size++;
   }
