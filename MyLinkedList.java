@@ -59,11 +59,12 @@ public class MyLinkedList {
     Node current;
     Node newNode = new Node(value);
     if (index == size) {
-      add(value);
-      end = newNode;
       if (index == 0) {
         start = newNode;
         end = start;
+      } else {
+      add(value);
+      size--;
       }
     } else {
       current = getNode(index);
@@ -79,12 +80,33 @@ public class MyLinkedList {
     size++;
   }
 
+  public Integer remove(int index) {
+    if (index < 0 || index > size) {
+      throw new IndexOutOfBoundsException();
+    }
+    Node old;
+    if (index == 0) {
+      old = start;
+      start = old.next();
+      start.setPrev(null);
+    } else if (index == size - 1) {
+        old = end;
+        end = old.prev();
+        end.setNext(null);
+    } else {
+      old = getNode(index);
+      old.next().setPrev(old.prev());
+      old.prev().setNext(old.next());
+    }
+    size--;
+    return old.value();
+  }
+
   public String toString() {
     String ans = "[";
     try {
       Node current = start;
       while (current.hasNext()) {
-        //System.out.println("node " + current.value() +" is followed by "+current.next().value());
         ans += current.value() + ", ";
         current = current.next();
       }
@@ -125,6 +147,9 @@ public class MyLinkedList {
     test.add(0,0);
     System.out.println("Adding 0 in the first slot...");
     System.out.println("test = " + test);
+    System.out.println("Removing the first element, "+test.remove(0)+"...\ntest = " + test);
+    System.out.println("Removing the last element, "+test.remove(test.size()-1)+"...\ntest = " + test);
+    System.out.println("Removing the third element, "+test.remove(2)+"...\ntest = " + test);
   }
 
   private class Node {
