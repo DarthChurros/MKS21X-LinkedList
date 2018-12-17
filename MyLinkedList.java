@@ -102,6 +102,24 @@ public class MyLinkedList {
     return old.value();
   }
 
+  public boolean remove(Integer value) {
+    Node current = start;
+    int index = 0;
+    while (current != end) {
+      if (value.equals(Integer.valueOf(current.value()))) {
+        remove(index);
+        return true;
+      }
+      current = current.next();
+      index++;
+    }
+    if (value.equals(Integer.valueOf(end.value()))) {
+      remove(index);
+      return true;
+    }
+    return false;
+  }
+
   public String toString() {
     String ans = "[";
     try {
@@ -150,6 +168,21 @@ public class MyLinkedList {
     System.out.println("Removing the first element, "+test.remove(0)+"...\ntest = " + test);
     System.out.println("Removing the last element, "+test.remove(test.size()-1)+"...\ntest = " + test);
     System.out.println("Removing the third element, "+test.remove(2)+"...\ntest = " + test);
+
+    test.add(5);
+    test.add(6);
+    test.add(7);
+
+    System.out.println("Adding 5, 6, 7...");
+    System.out.println("test = " + test);
+    System.out.println("Attempting to remove first instance of 2... " + test.remove(Integer.valueOf(2)));
+    System.out.println("test = " + test);
+    System.out.println("Attempting to remove first instance of 5... " + test.remove(Integer.valueOf(5)));
+    System.out.println("test = " + test);
+    System.out.println("Attempting to remove first instance of 7... " + test.remove(Integer.valueOf(7)));
+    System.out.println("test = " + test);
+    System.out.println("Attempting to remove first instance of 18... " + test.remove(Integer.valueOf(18)));
+    System.out.println("test = " + test);
   }
 
   private class Node {
