@@ -34,6 +34,9 @@ public class MyLinkedList {
   }
 
   public Integer set(int index, Integer value) {
+    if (index < 0 || index >= size) {
+      throw new IndexOutOfBoundsException();
+    }
     Node current = getNode(index);
     Integer old = current.value();
     current.set(value);
