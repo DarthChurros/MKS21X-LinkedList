@@ -126,6 +126,15 @@ public class MyLinkedList {
     return false;
   }
 
+  public void extend(MyLinkedList other) {
+    end.setNext(other.start);
+    other.start.setPrev(end);
+    end = other.end;
+    other.end = null;
+    other.start = null;
+    size += other.size();
+  }
+
   public String toString() {
     String ans = "[";
     try {
@@ -188,6 +197,18 @@ public class MyLinkedList {
     System.out.println("Attempting to remove first instance of 7... " + test.remove(Integer.valueOf(7)));
     System.out.println("test = " + test);
     System.out.println("Attempting to remove first instance of 18... " + test.remove(Integer.valueOf(18)));
+    System.out.println("test = " + test);
+
+    MyLinkedList toAdd = new MyLinkedList();
+    toAdd.add(-1);
+    toAdd.add(-2);
+    toAdd.add(-3);
+    toAdd.add(-4);
+    toAdd.add(-5);
+    toAdd.add(-6);
+    toAdd.add(-7);
+    System.out.println("Adding " + toAdd + " to test...");
+    test.extend(toAdd);
     System.out.println("test = " + test);
   }
 
