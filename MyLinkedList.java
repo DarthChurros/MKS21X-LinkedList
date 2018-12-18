@@ -127,9 +127,15 @@ public class MyLinkedList {
   }
 
   public void extend(MyLinkedList other) {
-    end.setNext(other.start);
-    other.start.setPrev(end);
-    end = other.end;
+    if (size == 0) {
+      start =  other.start;
+      end = other.end;
+      size = other.size;
+    } else if (other.size != 0) {
+      end.setNext(other.start);
+      other.start.setPrev(end);
+      end = other.end;
+    }
     other.end = null;
     other.start = null;
     size += other.size();
@@ -210,6 +216,14 @@ public class MyLinkedList {
     System.out.println("Adding " + toAdd + " to test...");
     test.extend(toAdd);
     System.out.println("test = " + test);
+    System.out.println("Adding empty MyLinkedList to test...");
+    test.extend(new MyLinkedList());
+    System.out.println("test = " + test);
+    MyLinkedList newList = new MyLinkedList();
+    System.out.println("newList = " + newList);
+    System.out.println("Adding test to newList...");
+    newList.extend(test);
+    System.out.println("newList = " + newList);
   }
 
   private class Node {
